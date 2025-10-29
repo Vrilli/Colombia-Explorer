@@ -85,31 +85,6 @@ Archivos separados: index.html, styles.css, app.js
         <strong>API de Wikipedia</strong> para obtener la imagen ilustrativa.
         Las notas del CRUD se guardan localmente con <code>localStorage</code>.
       </p>
-      <details>
-        <summary>Notas docentes (cómo explicarlo a clase)</summary>
-        <ul>
-          <li>
-            <b>Fetch básico:</b> <code>GET /api/v1/Department</code>,
-            <code>GET /api/v1/Department/{id}</code>,
-            <code>GET /api/v1/Department/{id}/cities</code>.
-          </li>
-          <li>
-            <b>Estado en JS:</b> <code>departments</code>,
-            <code>filtered</code>, <code>selected</code>, <code>cities</code>,
-            <code>view</code>, <code>thumbsOn</code>.
-          </li>
-          <li>
-            <b>CRUD local:</b> Create/Read/Update/Delete de <em>notas</em> por
-            departamento y <em>favoritos de departamentos</em> con
-            <code>localStorage</code>.
-          </li>
-          <li>
-            <b>Miniaturas:</b> <em>lazy-loading</em> con
-            <code>IntersectionObserver</code> + caché en memoria para no repetir
-            búsquedas.
-          </li>
-        </ul>
-      </details>
     </footer>
 
     <!-- DEFER garantiza que el DOM exista antes de ejecutar app.js -->
