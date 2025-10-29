@@ -1,0 +1,118 @@
+<!-- =========================================
+Colombia Explorer – CRUD + Filtros (API-Colombia)
+Archivos separados: index.html, styles.css, app.js
+(Hotfix) ➜ Arreglo de carga: init al DOM listo + limpieza de duplicados
+========================================= -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Colombia Explorer – Departamentos & Municipios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <div class="brand">
+          <div class="logo">🇨🇴</div>
+          <div>
+            <h1>Colombia Explorer</h1>
+            <p class="sub">
+              Filtra departamentos, explora su descripción, municipios e imagen.
+            </p>
+          </div>
+        </div>
+        <div class="toolbar">
+          <input
+            id="q"
+            class="input"
+            placeholder="Buscar departamento… (ej. Chocó)"
+          />
+          <select id="sort" aria-label="Ordenar">
+            <option value="name-asc">A → Z</option>
+            <option value="name-desc">Z → A</option>
+          </select>
+          <button id="reset" class="btn ghost">Limpiar</button>
+          <button
+            id="btnFavs"
+            class="btn toggle"
+            aria-pressed="false"
+            title="Ver tus departamentos favoritos"
+          >
+            Favoritos (0)
+          </button>
+          <label class="switch" title="Mostrar miniaturas en el listado">
+            <input type="checkbox" id="thumbs" />
+            <span class="slider"></span>
+            <span class="lbl">Miniaturas</span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid-2 wrap">
+      <section class="panel" aria-labelledby="ttl-list">
+        <div class="panel-hd">
+          <h2 id="ttl-list">Departamentos</h2>
+          <span id="count" class="muted">Cargando…</span>
+        </div>
+        <div class="panel-bd">
+          <div id="grid" class="grid"></div>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="ttl-det">
+        <div class="panel-hd"><h2 id="ttl-det">Detalle</h2></div>
+        <div id="detail" class="panel-bd">
+          <p class="muted">
+            Selecciona un departamento para ver su descripción, municipios e
+            imagen. 👈
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer wrap">
+      <p>
+        Esta app usa la <strong>API-Colombia</strong> (solo lectura) para datos
+        de departamentos y municipios, y el
+        <strong>API de Wikipedia</strong> para obtener la imagen ilustrativa.
+        Las notas del CRUD se guardan localmente con <code>localStorage</code>.
+      </p>
+      <details>
+        <summary>Notas docentes (cómo explicarlo a clase)</summary>
+        <ul>
+          <li>
+            <b>Fetch básico:</b> <code>GET /api/v1/Department</code>,
+            <code>GET /api/v1/Department/{id}</code>,
+            <code>GET /api/v1/Department/{id}/cities</code>.
+          </li>
+          <li>
+            <b>Estado en JS:</b> <code>departments</code>,
+            <code>filtered</code>, <code>selected</code>, <code>cities</code>,
+            <code>view</code>, <code>thumbsOn</code>.
+          </li>
+          <li>
+            <b>CRUD local:</b> Create/Read/Update/Delete de <em>notas</em> por
+            departamento y <em>favoritos de departamentos</em> con
+            <code>localStorage</code>.
+          </li>
+          <li>
+            <b>Miniaturas:</b> <em>lazy-loading</em> con
+            <code>IntersectionObserver</code> + caché en memoria para no repetir
+            búsquedas.
+          </li>
+        </ul>
+      </details>
+    </footer>
+
+    <!-- DEFER garantiza que el DOM exista antes de ejecutar app.js -->
+    <script type="module" src="./script.js" defer></script>
+  </body>
+</html>
